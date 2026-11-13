@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="Blurry, grainy security-camera still of a man in a hood; the face is not clear. Illustration; not a real person.">
+<defs>
+  <filter id="blur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="7"/></filter>
+  <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 0.35"/></feComponentTransfer></filter>
+  <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="2" fill="#000" opacity="0.22"/></pattern>
+  <radialGradient id="vig" cx="50%" cy="45%" r="70%"><stop offset="55%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity="0.75"/></radialGradient>
+</defs>
+<rect width="320" height="240" fill="#4b5560"/>
+<rect x="0" y="150" width="320" height="90" fill="#3a434c"/>
+<g filter="url(#blur)" opacity="0.92"><g transform="translate(118 46) scale(0.62) rotate(-6 100 120)"><path d="M30,240 C34,206 62,196 100,196 C138,196 166,206 170,240Z" fill="#2f3e52"/><rect x="85" y="178" width="30" height="26" fill="#cf9a72"/><ellipse cx="47" cy="128" rx="8" ry="15" fill="#cf9a72"/><ellipse cx="153" cy="128" rx="8" ry="15" fill="#cf9a72"/><path d="M100,52 C155.08,52 151,98 151,122 C151,160 127,190 100,196 C73,190 49,160 49,122 C49,98 44.919999999999995,52 100,52Z" fill="#e3b38c"/><path d="M55,150 C59,176 73,192 100,196 C127,192 141,176 145,150 C120.4,187 79.6,187 55,150Z" fill="#4f2f17" opacity="0.1"/><path d="M46,120 C41,62 69.4,38 100,38 C130.6,38 159,62 154,120 L148,104 C145,74 122.95,68 100,69 C77.05,68 55,74 52,104Z" fill="#4f2f17"/><path d="M92,110 Q79,104 66,109" stroke="#4f2f17" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M108,110 Q121,104 134,109" stroke="#4f2f17" stroke-width="5" fill="none" stroke-linecap="round"/><ellipse cx="79" cy="124" rx="8.5" ry="5" fill="#f3ece4"/><circle cx="79" cy="124.5" r="4.2" fill="#3a2418"/><path d="M70,123 Q79,116 88,123" stroke="#3a2418" stroke-width="1.6" fill="none"/><ellipse cx="121" cy="124" rx="8.5" ry="5" fill="#f3ece4"/><circle cx="121" cy="124.5" r="4.2" fill="#3a2418"/><path d="M112,123 Q121,116 130,123" stroke="#3a2418" stroke-width="1.6" fill="none"/><path d="M98,130 L96,151 M93,153 Q100,158 107,153" stroke="#cf9a72" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M85,171 Q100,173 115,171" stroke="#3a2418" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M91,177 Q100,180 109,177" stroke="#cf9a72" stroke-width="2" fill="none" stroke-linecap="round"/></g>
+<path d="M180,56 C128,56 128,130 134,176 L152,176 C146,120 156,86 180,86 C204,86 214,120 208,176 L226,176 C232,130 232,56 180,56Z" fill="#1b1d20" opacity="0.9"/></g>
+<rect width="320" height="240" filter="url(#grain)"/>
+<rect width="320" height="240" fill="url(#scan)"/>
+<rect width="320" height="240" fill="url(#vig)"/>
+<g font-family="Consolas, 'Courier New', monospace" font-size="11" fill="#e8e8e8" opacity="0.85">
+  <text x="12" y="20">CAM 04</text>
+  <circle cx="300" cy="226" r="4" fill="#e04a3a"/><text x="262" y="230">REC</text>
+</g></svg>
