@@ -213,7 +213,6 @@
   var dbBox = document.querySelector('[data-dbslider]');
   var bigGrid = document.querySelector('[data-db-big]');
   if (dbBox && bigGrid) {
-    var readout = dbBox.querySelector('[data-db-readout]');
     var presets = Array.prototype.slice.call(dbBox.querySelectorAll('.db-preset'));
     var icons = Array.prototype.slice.call(bigGrid.querySelectorAll('.db-ico'));
     var hitIdx = icons.filter(function (g) { return g.classList.contains('hit'); })
@@ -227,12 +226,6 @@
         g.classList.toggle('off', i >= shown);
         g.classList.toggle('hit', live.indexOf(i) !== -1);
       });
-      var facesText = faces.toLocaleString('en-US');
-      var who = hits === 0 ? 'fewer than <b class="db-hits">1</b> person who looks'
-        : hits === 1 ? 'about <b class="db-hits">1</b> person who looks'
-        : 'about <b class="db-hits">' + hits + '</b> people who look';
-      readout.innerHTML = 'Searching <b>' + facesText + '</b> faces turns up ' + who +
-        ' like the suspect but didn’t commit the crime.';
       presets.forEach(function (btn) {
         btn.setAttribute('aria-pressed', String(Number(btn.getAttribute('data-faces')) === faces));
       });
