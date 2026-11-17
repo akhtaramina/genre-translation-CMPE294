@@ -168,7 +168,7 @@
     };
     // Stage boxes are buttons: click (or Enter/Space) jumps to that step, so
     // readers can go back without scrolling.
-    var goToStep = function (n) {
+    var goToStep = function (n, instant) {
       var step = stepEls[n - 1];
       var top;
       if (wideQuery.matches) {
@@ -177,7 +177,7 @@
       } else {
         top = window.scrollY + step.getBoundingClientRect().top - 72;
       }
-      window.scrollTo({ top: top, behavior: reduceMotion ? 'auto' : 'smooth' });
+      window.scrollTo({ top: top, behavior: instant ? 'instant' : (reduceMotion ? 'auto' : 'smooth') });
       setStep(n);
     };
     flow.removeAttribute('role');
@@ -204,6 +204,34 @@
     }, { rootMargin: '-55% 0px -35% 0px' });
     stepEls.forEach(function (el) { stepIO.observe(el); });
     setStep(1);
+
+    // Deep links: #step-1 … #step-5 open the page on that step, exactly as if
+    // its stage button were pressed, once images and the panel have settled.
+    // The browser's own jump to the id would land the step under the sticky
+    // diagram and fight this scroll, so the id is held back until we're done.
+    var hashStep = function () {
+      var m = /^#step-([1-5])$/.exec(location.hash);
+      return m ? Number(m[1]) : 0;
+    };
+    var openHashStep = function (instant) {
+      var n = hashStep();
+      if (!n) return;
+      requestAnimationFrame(function () { goToStep(n, instant === true); });
+    };
+    if (hashStep()) {
+      var heldStep = stepEls[hashStep() - 1];
+      var heldId = heldStep.id;
+      heldStep.removeAttribute('id');
+      // give the id back on the reader's first scroll, tap, or key press
+      var restoreId = function () {
+        heldStep.id = heldId;
+        ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(function (t) { window.removeEventListener(t, restoreId); });
+      };
+      ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(function (t) { window.addEventListener(t, restoreId, { passive: true }); });
+      if (document.readyState === 'complete') openHashStep(true);
+      else window.addEventListener('load', function () { openHashStep(true); });
+    }
+    window.addEventListener('hashchange', function () { openHashStep(false); });
   }
 
   /* ---------- database-size buttons (drive Figure 2's grid) ---------- */
